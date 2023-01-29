@@ -1,7 +1,7 @@
 const dotenv = require('dotenv');
 const express = require('express');
 const initDb = require('./config/db')
-const userRouters = require('../app/routes/user');
+const upload = require('../app/routes/upload');
 const bodyParser = require('body-parser')
 dotenv.config();
 
@@ -9,7 +9,7 @@ const port = process.env.APP_PORT
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(userRouters)
+app.use(upload)
 
 app.use(
     bodyParser.json({
