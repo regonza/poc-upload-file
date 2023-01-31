@@ -8,7 +8,7 @@ const storage = multer.diskStorage({
         cb(null, './upload')
     },
     filename: function(req, file, cb){
-        cb(null, `${Date.now()}-${file.originalname}`)
+        cb(null, `${Date.now()}.pdf`)
     }
 })
 const upload = multer({storage: storage})
@@ -21,7 +21,8 @@ exports.upload = upload.single('myFile'), (req, res) => {
  };
 
 exports.uploadFile = async (req, res) => {
-    const data = await pdfToText('./upload/1674975858435-LVASD-SARE2359-SARC_260123.pdf', 1);
+    // TODO storage dinamico.
+    const data = await pdfToText('./upload/1675026166443.pdf', 1);
     console.log(`la data: ${data}`)
     res.send(data);
 }
