@@ -1,0 +1,49 @@
+Table planify.flight_plan {
+  id int [pk]
+  aircraft_id int
+  flight_rule int
+  flight_type int
+  wake_turbulence_cat varchar
+  equipment varchar
+  departure_aerodrome int
+  time time
+  cruising_speed varchar
+  level varchar
+  route varchar
+  destination_aerodrome int
+  total_eet time
+  alternative_aerodrome int
+  second_alternative_aerodrome int
+  other_information varchar
+  endurance time
+  persons_on_board int
+}
+
+Table planify.flight_rule {
+  id int [pk]
+  description varchar
+}
+
+Table planify.flight_type {
+  id int [pk]
+  description varchar
+}
+
+Table planify.aircraft {
+  id int [pk]
+  model varchar
+  number int
+  type varchar
+}
+
+Table planify.aerodrome {
+  id int [pk]
+  name varchar
+}
+
+Ref: planify.flight_plan.aircraft_id > planify.aircraft.id
+Ref: planify.flight_plan.flight_rule > planify.flight_rule.id
+Ref: planify.flight_plan.flight_type > planify.flight_type.id
+Ref: planify.flight_plan.destination_aerodrome > planify.aerodrome.id
+Ref: planify.flight_plan.alternative_aerodrome > planify.aerodrome.id
+Ref: planify.flight_plan.second_alternative_aerodrome > planify.aerodrome.id

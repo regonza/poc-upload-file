@@ -1,0 +1,19 @@
+version: '3.1'
+
+services:
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: planify
+      POSTGRES_USER: planify
+      POSTGRES_DB: planify-db
+    volumes:
+    - ./planify-db.sql:/docker-entrypoint-initdb.d/planify-db.sql
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
